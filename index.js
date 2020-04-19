@@ -10,6 +10,7 @@ const general =
             //Move mee
             if (msg.channel.id === general && msg.author.username === 'adi_random' && msg.content.match(new RegExp("[Yy]o+"))) {
                 const channel = await client.channels.fetch('670707818327834655');
+                console.log(client.users);
                 msg.member.edit({
                     channel
                 }).catch(e => console.log(e))
