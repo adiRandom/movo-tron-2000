@@ -56,9 +56,9 @@ client.on('message', async (msg) => {
             })
         }
 
-        if(msg.content === "Taci")
+        if (msg.content === "Taci")
             botDispatcher.destroy();
-        if(msg.content === 'Mars'){
+        if (msg.content === 'Mars') {
             const channel = await client.channels.fetch(chatRoomId);
             const conn = await channel.leave();
         }
@@ -76,17 +76,25 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         botDispatcher = conn.play(ytdl(trapSongs[getRandomInt(0, 5)], {filter: 'audioonly'}))
     }
 
-    // if(newState.id === eu_id && newState.channelID === chatRoomId){
-    //     const channel = await client.channels.fetch(chatRoomId);
-    //     const conn = await channel.join();
-    //     botDispatcher = conn.play('./pascu.mp3')
-    // }
-    if(newState.id === eu_id && newState.channelID === chatRoomId){
+    if (newState.id === eu_id && newState.channelID === chatRoomId) {
+        const channel = await client.channels.fetch(chatRoomId);
+        const conn = await channel.join();
+        botDispatcher = conn.play('./pascu.mp3')
+    }
+
+    if (newState.id === ciprian_id && newState.channelID === chatRoomId) {
         const channel = await client.channels.fetch(chatRoomId);
         const conn = await channel.join();
         botDispatcher = conn.play('./ciprian.ogg')
     }
 
 })
+
+// Din ora in ora
+schedule.scheduleJob('15 * * * *', async () => {
+    const channel = await client.channels.fetch(chatRoomId);
+    const conn = await channel.join();
+    botDispatcher = conn.play('./ciprian.ogg')
+});
 
 client.login(token);
