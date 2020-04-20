@@ -4,21 +4,23 @@ const client = new Discord.Client();
 const token = process.env.DISCORD;
 // const dbl = new DBL(token, client);
 
+const ytdl = require('ytdl-core');
+
 const general = '699309436019277945'
 const dragomir_id_2 = '268447815426899968'
-const rares_id  = '319172629548236800'
+const rares_id = '319172629548236800'
 const eu_id = '268355445117157376'
 const chatRoomId = '700750599570063400'
 const groovy = '613354794316202002'
 
 
 const trapSongs = [
-    'abi $scuze',
-    '5gang sos',
-    'lilpump esskeetit',
-    'abi sarpe',
-    '9ciori',
-    'ian mili'
+    'https://www.youtube.com/watch?v=gST0ZPYpk4E',
+    'https://www.youtube.com/watch?v=Brdva8bRNDg',
+    'https://www.youtube.com/watch?v=DPxL7dO5XPc',
+    'https://www.youtube.com/watch?v=RnAtb6mvqM4',
+    'https://www.youtube.com/watch?v=HyxgyyOE_AI',
+    'https://www.youtube.com/watch?v=Jw6xpt80P1E'
 ]
 
 function getRandomInt(min, max) {
@@ -53,9 +55,14 @@ client.on('message', async (msg) => {
     }
 )
 
-client.on('voiceStateUpdate',async(oldState,newState)=>{
-    if(newState.id === eu_id && newState.mute)
+client.on('voiceStateUpdate', async (oldState, newState) => {
+    if (newState.id === eu_id && newState.mute)
         newState.setMute(false);
+    if (newState.id === eu_id && newState.channelID === chatRoomId) {
+        const channel = await client.channels.fetch(chatRoomId);
+        const conn = await channel.join();
+        conn.play(ytdl(trapSongs[getRandomInt(0, 5)], {filter: 'audioonly'}))
+    }
 })
 
 client.login(token);
