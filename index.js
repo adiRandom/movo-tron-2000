@@ -54,9 +54,9 @@ client.on('message', async (msg) => {
 
 client.on("voiceStateUpdate",async(oldState,newState)=>{
     if(newState.id === rares_id && newState.channelID === chatRoomId) {
-        const channel = await client.channels.fetch(groovy);
+        const user = await client.users.fetch(rares_id)
         const song = trapSongs[getRandomInt(0,5)]
-        channel.send(`-play ${song}`)
+        user.send(`-play ${song}`)
     }
 })
 
