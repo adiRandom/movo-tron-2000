@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+require('dotenv').config();
 const client = new Discord.Client();
 // const DBL = require("dblapi.js");
 const token = process.env.DISCORD;
