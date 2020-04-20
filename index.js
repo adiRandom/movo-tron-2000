@@ -13,6 +13,8 @@ const eu_id = '268355445117157376'
 const chatRoomId = '700750599570063400'
 const groovy = '613354794316202002'
 
+let botDispatcher;
+
 
 const trapSongs = [
     'https://www.youtube.com/watch?v=gST0ZPYpk4E',
@@ -52,16 +54,25 @@ client.on('message', async (msg) => {
                 mute: true
             })
         }
+
+        if(msg.content === "Taci")
+            botDispatcher.destroy();
+        if(msg.content === 'Mars'){
+            const channel = await client.channels.fetch(chatRoomId);
+            const conn = await channel.leave();
+        }
     }
 )
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
     if (newState.id === eu_id && newState.mute)
         newState.setMute(false);
-    if (newState.id === eu_id && newState.channelID === chatRoomId) {
+
+    //Rares troll
+    if (newState.id === rares_id && newState.channelID === chatRoomId) {
         const channel = await client.channels.fetch(chatRoomId);
         const conn = await channel.join();
-        conn.play(ytdl(trapSongs[getRandomInt(0, 5)], {filter: 'audioonly'}))
+        botDispatcher = conn.play(ytdl(trapSongs[getRandomInt(0, 5)], {filter: 'audioonly'}))
     }
 })
 
