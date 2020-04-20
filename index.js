@@ -76,7 +76,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         botDispatcher = conn.play(ytdl(trapSongs[getRandomInt(0, 5)], {filter: 'audioonly'}))
     }
 
-    if(newState.id === rares_id && newState.channelID === chatRoomId){
+    if(newState.id === eu_id && newState.channelID === chatRoomId){
         const channel = await client.channels.fetch(chatRoomId);
         const conn = await channel.join();
         botDispatcher = conn.play('./pascu.mp3')
