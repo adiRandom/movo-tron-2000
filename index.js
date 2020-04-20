@@ -92,7 +92,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 })
 
 // Din ora in ora
-schedule.scheduleJob('16 * * * *', async () => {
+schedule.scheduleJob('0 * * * *', async () => {
     const channel = await client.channels.fetch(chatRoomId);
     const conn = await channel.join();
     botDispatcher = conn.play('./ciprian.ogg')
