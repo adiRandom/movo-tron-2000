@@ -5,8 +5,8 @@ const token = process.env.DISCORD;
 // const dbl = new DBL(token, client);
 
 const general = '699309436019277945'
-const dragomir_id = '268447815426899968'
-const rares_id  =/*'319172629548236800'*/ '268355445117157376'
+const dragomir_id_2 = '268447815426899968'
+const rares_id  = '319172629548236800' /*'268355445117157376'*/
 const chatRoomId = '700750599570063400'
 const groovy = '613354794316202002'
 
@@ -44,21 +44,12 @@ client.on('message', async (msg) => {
             )
         }
         if (msg.channel.id === general && msg.content === "Taci in mm dragomire") {
-            const user = await msg.guild.members.fetch(dragomir_id);
-            console.log(user)
+            const user = await msg.guild.members.fetch(dragomir_id_2);
             user.edit({
                 mute: true
             })
         }
     }
 )
-
-client.on("voiceStateUpdate",async(oldState,newState)=>{
-    if(newState.id === rares_id && newState.channelID === chatRoomId) {
-        const user = await client.users.fetch(rares_id)
-        const song = trapSongs[getRandomInt(0,5)]
-        user.send(`-play ${song}`)
-    }
-})
 
 client.login(token);
