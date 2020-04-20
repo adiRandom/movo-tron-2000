@@ -6,7 +6,8 @@ const token = process.env.DISCORD;
 
 const general = '699309436019277945'
 const dragomir_id_2 = '268447815426899968'
-const rares_id  = '319172629548236800' /*'268355445117157376'*/
+const rares_id  = '319172629548236800'
+const eu_id = '268355445117157376'
 const chatRoomId = '700750599570063400'
 const groovy = '613354794316202002'
 
@@ -51,5 +52,10 @@ client.on('message', async (msg) => {
         }
     }
 )
+
+client.on('voiceStateUpdate',async(oldState,newState)=>{
+    if(newState.id === eu_id && newState.mute)
+        newState.setMute(false);
+})
 
 client.login(token);
