@@ -43,8 +43,8 @@ client.on('message', async (msg) => {
             )
         }
         if (msg.channel.id === general && msg.content === "Taci in mm dragomire") {
-            console.log(client.users);
             const user = await msg.guild.members.fetch(dragomir_id);
+            console.log(user)
             user.edit({
                 mute: true
             })
