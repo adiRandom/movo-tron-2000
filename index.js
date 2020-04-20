@@ -81,6 +81,11 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         const conn = await channel.join();
         botDispatcher = conn.play('./pascu.mp3')
     }
+    if(newState.id === eu_id && newState.channelID === chatRoomId){
+        const channel = await client.channels.fetch(chatRoomId);
+        const conn = await channel.join();
+        botDispatcher = conn.play('./ciprian.mp3')
+    }
 
 })
 
