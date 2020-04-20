@@ -37,6 +37,7 @@ client.on('message', async (msg) => {
         }
 
         if (msg.channel.id === general && msg.author.username === 'discpro' && msg.content.match(new RegExp("[Yy]o+"))) {
+            console.log('hey')
             msg.member.edit({
                     mute: true
                 }
