@@ -5,6 +5,7 @@ const token = process.env.DISCORD;
 // const dbl = new DBL(token, client);
 
 const ytdl = require('ytdl-core');
+const schedule = require('node-schedule')
 
 const general = '699309436019277945'
 const dragomir_id_2 = '268447815426899968'
@@ -91,7 +92,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 })
 
 // Din ora in ora
-schedule.scheduleJob('15 * * * *', async () => {
+schedule.scheduleJob('16 * * * *', async () => {
     const channel = await client.channels.fetch(chatRoomId);
     const conn = await channel.join();
     botDispatcher = conn.play('./ciprian.ogg')
