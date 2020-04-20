@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 // const DBL = require("dblapi.js");
-const token = "NzAxNTIxMjQ3MTk2MDIwNzY4.Xp1eCQ.ZWyw6lnYxX9DMiOfOgsz5zGbk-s"
+console.log(process.env)
 // const dbl = new DBL(token, client);
 
 const general = '699309436019277945'
